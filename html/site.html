@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+		<link rel="stylesheet" href="http://mta/webui/styles/style1.css">
+		<!--Import materialize.css-->
+		<link rel="stylesheet" href="http://mta/webui/styles/style2.css">
+		<link rel="stylesheet" href="http://mta/loginpanel/html/styles/style.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<script>
+			function hide() {
+				mta.triggerEvent("eloelo", "two2")
+				document.getElementById("div").style.display = 'none'
+			}
+		</script>
+		
+  </head>
+
+  <body>
+		<div class="card my-div">
+            <div class="row">
+                <div class="col s12">
+                  <ul id="tabs-swipe" class="tabs my-tabs">
+                    <li class="tab col s6"><a class="active" href="#login-div">Login</a></li>
+                    <li class="tab col s6"><a href="#register-div">Register</a></li>
+                  </ul>
+                </div>
+            </div>
+            <form id="login-div">
+                <br>
+                <div class="input-field my-field">
+                    <i class="material-icons prefix">account_box</i>
+                    <input type="text" id="nickname">
+                    <label class="active" for="name">Nickname</label>
+                </div>
+                <div class="input-field my-field">
+                    <i class="material-icons prefix">lock_open</i>
+                    <input type="password" id="password">
+                    <label class="active" for="password">Password</label>
+                </div>
+                <div class="center-align">
+                    <button onClick="hide()" class="btn waves-effect waves-light light-blue my-button"><i class="material-icons right">input</i>Sign in</button>
+                </div>
+            </form>
+            <form id="register-div">
+                <div class="row">
+                    <div class="col s6">
+                        <button onClick="hide()" class="btn waves-effect waves-light blue my-button"><i class="material-icons right">input</i>Sign up</button>
+                    </div>
+                </div>
+			     <button id="div" class="btn disabled my-button1">Read more</button>
+            </form>
+		</div>
+	
+	
+    <!--JavaScript at end of body for optimized loading-->
+      <!--<script src="http://mta/webui/styles/style3.css"></script>-->
+      <script type="text/javascript" src="http://mta/webui/styles/jquery.js"></script>
+      <script src="http://mta/webui/styles/mat.js"></script>
+      
+  </body>
+</html>

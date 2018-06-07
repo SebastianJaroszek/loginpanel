@@ -1,0 +1,5 @@
+<meta>
+	<file src="html/styles/style.css"/>
+	<file src="html/site.html"/>
+	<script src="LoginClient.lua" type="client" cache="false"/>
+</meta>

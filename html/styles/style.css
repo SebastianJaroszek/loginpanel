@@ -1,0 +1,54 @@
+.my-div {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 350px;
+}
+
+.my-button {
+    /*position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);*/
+    margin-top: 10%;
+}
+
+.my-field {
+    position: relative;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, 0);
+}
+
+.my-tabs {
+    width: 75%;
+}
+
+.tabs .tab a{
+    color: #03a9f4;
+}
+.tabs .tab a:hover,.tabs .tab a.active {
+	background-color:transparent;
+	color: #03a9f4;
+}
+.tabs .tab.disabled a,.tabs .tab.disabled a:hover {
+	color:rgba(102,147,153,0.7);	
+}
+.tabs .indicator {
+	background-color: #03a9f4;
+}
+
+.input-field input:focus + label {
+    color: #03a9f4 !important;
+}
+
+.input-field .prefix.active {
+     color: #03a9f4;
+}
+
+#password:focus, #nickname:focus {
+ border-bottom: 1px solid #03a9f4;
+ box-shadow: none;
+}
