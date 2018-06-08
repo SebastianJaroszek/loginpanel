@@ -37,6 +37,7 @@
 	background-color:transparent;
 	color: #03a9f4;
 }
+
 .tabs .tab.disabled a,.tabs .tab.disabled a:hover {
 	color:rgba(102,147,153,0.7);	
 }
@@ -50,6 +51,11 @@
 
 .input-field .prefix.active {
      color: #03a9f4;
+}
+
+.tabs .tab a:focus.active{
+    background-color: transparent;
+    color: #03a9f4;
 }
 
 #password:focus, #nickname:focus, #password_reg:focus, #nickname_reg:focus, #confirm_password:focus {
