@@ -5,14 +5,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 420px;
-    height: 400px;
+    height: 350px;
 }
 
 .my-button {
     /*position: absolute;
     left: 50%;
     transform: translate(-50%, 0);*/
-    margin-top: 8%;
+    margin-top: 5%;
 }
 
 .my-button-register {
@@ -34,7 +34,7 @@
     color: #03a9f4;
 }
 .tabs .tab a:hover,.tabs .tab a.active {
-	background-color:transparent;
+	background-color: transparent;
 	color: #03a9f4;
 }
 
@@ -64,11 +64,11 @@
 }
 
 .switch label input[type=checkbox]:checked+.lever {
-  background-color: #03a9f4;
+    background-color: #03a9f4;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
-  background-color: #03a9f4;
+    background-color: #03a9f4;
 }
 
 .switch {
@@ -77,4 +77,14 @@
     width: 85%;
     transform: translate(-50%, 0);
     text-align: justify;
+    margin-top: 5%;
 }
+
+.my-label {
+    position: relative;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, 0);
+    text-align: center;
+}
+

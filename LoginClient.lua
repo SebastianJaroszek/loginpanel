@@ -10,8 +10,11 @@ addEventHandler("onClientResourceStart", resourceRoot,
 	end
 )
 
-function clientClickLogin (msg)
-	outputChatBox("elo "..msg)
-end
-addEvent("eloelo", true)
-addEventHandler("eloelo", root, clientClickLogin)
+addEvent("cefEventsLoginPanel",true)
+addEventHandler("cefEventsLoginPanel", root,
+	function(ev, nickname, password, confirmPassword, agreeRules)
+		if (ev == "verifyData") then
+			triggerServerEvent("ev",resourceRoot,nickname,password,confirmPassword,agreeRules)
+		end
+	end
+)
