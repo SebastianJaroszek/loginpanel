@@ -10,55 +10,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
-		<script>
-			function hide() {
-				mta.triggerEvent("eloelo", "two2")
-				document.getElementById("div").style.display = 'none'
-			}
-            
-            function setShortBackground() {
-                document.getElementById("my-background").style.height = "350px";
-            }
-            
-            function setLongBackground() {
-                document.getElementById("my-background").style.height = "450px";
-            }
-            
-            function registrationValidate() {
-                event.preventDefault();
-                
-                var nickname = document.getElementById("nickname_reg").value;
-                var password = document.getElementById("password_reg").value;
-                var confirmPassword = document.getElementById("confirm_password").value;
-                var agreeRules = document.getElementById("registration-checkbox");
-                
-                if (nickname.length < 1 || password < 1 || confirmPassword < 1) {
-                    document.getElementById("registration-label").innerHTML = "You have to fill all fields.";
-                    document.getElementById("registration-label").style.color = "red";
-                    return;
-                }
-                
-                if (password.length < 6) {
-                    document.getElementById("registration-label").innerHTML = "Password must contains 6 or more characters.";
-                    return;
-                }
-                
-                if (password != confirmPassword) {
-                    document.getElementById("registration-label").innerHTML = "Passwords are different.";
-                    return;
-                }
-                
-                if (!agreeRules.checked) {
-                    document.getElementById("registration-label").innerHTML = "You have to accept rules and privacy policy.";
-                    return;
-                }
-                
-                mta.triggerEvent("cefEventsLoginPanel", "verifyData", nickname, password, confirmPassword, agreeRules.checked);
-            }
-		</script>
-		
   </head>
-
   <body>
 		<div class="card my-div" id="my-background">
             <div class="row">
@@ -73,12 +25,12 @@
                 <br>
                 <div class="input-field my-field">
                     <i class="material-icons prefix">account_box</i>
-                    <input type="text" id="nickname">
+                    <input type="text" id="nickname" maxlength="22">
                     <label class="active" for="nickname">Nickname</label>
                 </div>
                 <div class="input-field my-field">
                     <i class="material-icons prefix">lock_open</i>
-                    <input type="password" id="password">
+                    <input type="password" id="password" maxlength="32">
                     <label class="active" for="password">Password</label>
                 </div>
                 <div class="my-label">
@@ -93,17 +45,17 @@
             <form id="register-div">
                 <div class="input-field my-field">
                     <i class="material-icons prefix">account_box</i>
-                    <input type="text" id="nickname_reg">
+                    <input type="text" id="nickname_reg" maxlength="22">
                     <label class="active" for="nickname_reg">Nickname</label>
                 </div>
                 <div class="input-field my-field">
                     <i class="material-icons prefix">lock_open</i>
-                    <input type="password" id="password_reg">
+                    <input type="password" id="password_reg" maxlength="32">
                     <label class="active" for="password_reg">Password</label>
                 </div>
                 <div class="input-field my-field">
                     <i class="material-icons prefix">lock_open</i>
-                    <input type="password" id="confirm_password">
+                    <input type="password" id="confirm_password" maxlength="32">
                     <label class="active" for="confirm_password">Confirm password</label>
                 </div>
                 <div class="my-label">
@@ -128,6 +80,72 @@
     <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="http://mta/webui/styles/jquery.js"></script>
       <script src="http://mta/webui/styles/mat.js"></script>
+      
+      <script>
+			function hide() {
+				mta.triggerEvent("eloelo", "two2")
+				document.getElementById("div").style.display = 'none'
+			}
+            
+            function setShortBackground() {
+                document.getElementById("my-background").style.height = "350px";
+            }
+            
+            function setLongBackground() {
+                document.getElementById("my-background").style.height = "450px";
+            }
+            
+            function registrationValidate() {
+                event.preventDefault();
+                
+                var nickname = document.getElementById("nickname_reg").value;
+                var password = document.getElementById("password_reg").value;
+                var confirmPassword = document.getElementById("confirm_password").value;
+                var agreeRules = document.getElementById("registration-checkbox");
+                
+                var usableCharacters = "qwertyuiopasdfghjklzxcvbnm1234567890";
+                
+                for (i = 0; i < nickname.length; i++) {
+                    if (!usableCharacters.includes(nickname.charAt(i).toLowerCase())) {
+                        document.getElementById("registration-label").innerHTML = "You can use only letters and numbers in nickname field.";
+                        document.getElementById("registration-label").style.color = "red";
+                        return;
+                    }
+                }
+                
+                if (nickname.length < 1 || password < 1 || confirmPassword < 1) {
+                    document.getElementById("registration-label").innerHTML = "You have to fill all fields.";
+                    document.getElementById("registration-label").style.color = "red";
+                    return;
+                }
+                
+                if (nickname.length > 22 || password > 32 || confirmPassword > 32) {
+                    document.getElementById("registration-label").innerHTML = "There are too long values in fields.";
+                    document.getElementById("registration-label").style.color = "red";
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    document.getElementById("registration-label").innerHTML = "Password must contains 6 or more characters.";
+                    document.getElementById("registration-label").style.color = "red";
+                    return;
+                }
+                
+                if (password != confirmPassword) {
+                    document.getElementById("registration-label").innerHTML = "Passwords are different.";
+                    document.getElementById("registration-label").style.color = "red";
+                    return;
+                }
+                
+                if (!agreeRules.checked) {
+                    document.getElementById("registration-label").innerHTML = "You have to accept rules and privacy policy.";
+                    document.getElementById("registration-label").style.color = "red";
+                    return;
+                }
+                
+                mta.triggerEvent("cefEventsLoginPanel", "verifyData", nickname, password, confirmPassword, agreeRules.checked);
+            }
+		</script>
       
   </body>
 </html>
