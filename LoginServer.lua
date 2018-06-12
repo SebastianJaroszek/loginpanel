@@ -1,3 +1,18 @@
+local spawnPlr = (
+	function(plr)
+		sleep(3000);
+		spawnPlayer(plr, -107.81364, 1206.71301, 19.74219, 135);
+		triggerClientEvent(plr,"evc",resourceRoot,"closeWindow");
+	end
+)
+
+local registrationFinal = (
+	function(plr)
+		sleep(3000);
+		triggerClientEvent(plr, "evc", resourceRoot, "accept", "Registration was successful. Let\\'s login.");
+	end
+)
+
 addEvent("ev",true)
 addEventHandler("ev",resourceRoot,
 	function(ev,arg1,arg2,arg3,arg4)
@@ -46,7 +61,7 @@ addEventHandler("ev",resourceRoot,
 				return;
 			end
 			
-			triggerClientEvent(client, "evc", resourceRoot, "accept", "Registration was successful. Let\\'s login.");
+			callFunctionWithSleeps(registrationFinal, client);
 			
 		elseif (ev == "verifyLoginData") then
 		
@@ -72,6 +87,10 @@ addEventHandler("ev",resourceRoot,
 			
 			exports.DB:zapytanie("UPDATE players SET last_session=NOW() WHERE dbid=? LIMIT 1", exists.dbid);
 			triggerClientEvent(client, "evc", resourceRoot, "accept_login", "Login was successful.");
+			
+		elseif (ev == "spawnPlr") then
+		
+			callFunctionWithSleeps(spawnPlr, client);
 			
 		end
 	end

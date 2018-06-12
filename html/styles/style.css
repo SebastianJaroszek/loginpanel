@@ -88,3 +88,15 @@
     text-align: center;
 }
 
+.progress {
+		margin-top: 20px;
+		background-color: #81d4fa; 
+}
+
+.progress > .indeterminate {
+		background-color: #03a9f4;
+}
+
+.hidden {
+    display: none;
+}

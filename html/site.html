@@ -74,6 +74,9 @@
                     <button onClick="registrationValidate()" class="btn waves-effect waves-light light-blue my-button-register hoverable"><i class="material-icons right">done</i>Sign up</button>
                 </div>
             </form>
+            <div class="progress hidden" id="progress_wait_bar">
+                <div class="indeterminate"></div>
+            </div>
 		</div>
 	
 	
@@ -100,9 +103,20 @@
                     return;
                 }
                 
+                showProgressBar();
                 mta.triggerEvent("cefEventsLoginPanel", "verifyLoginData", nickname, password);
                 
 			}
+          
+            function hideProgressBar() {
+                var bar = document.getElementById("progress_wait_bar");
+                bar.style.display = "none";
+            }
+          
+            function showProgressBar() {
+                var bar = document.getElementById("progress_wait_bar");
+                bar.style.display = "block";
+            }
             
             function setShortBackground() {
                 document.getElementById("my-background").style.height = "350px";
@@ -160,6 +174,7 @@
                     return;
                 }
                 
+                showProgressBar();
                 mta.triggerEvent("cefEventsLoginPanel", "verifyData", nickname, password, confirmPassword, agreeRules.checked);
             }
 		</script>
