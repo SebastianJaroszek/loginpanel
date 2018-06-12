@@ -32,7 +32,46 @@ addEventHandler("ev",resourceRoot,
 				return;
 			end
 			
+			local exists = exports.DB:pobierzWyniki("SELECT dbid FROM players WHERE nick=? LIMIT 1",nickname);
+			
+			if exists then
+				triggerClientEvent(client, "evc", resourceRoot, "error", "This nickname is already exist in database.");
+				return;
+			end
+			
+			local _, success = exports.DB:zapytanie("INSERT INTO players SET nick=?,password=SHA1(CONCAT(LOWER(?),'cbF0NdGo',?)), last_session=NOW()",nickname,string.format("%s%s",password,"89dXhg5dOY"),password);
+			
+			if not success then
+				triggerClientEvent(client, "evc", resourceRoot, "error", "This nickname is already exist in database.");
+				return;
+			end
+			
 			triggerClientEvent(client, "evc", resourceRoot, "accept", "Registration was successful. Let\\'s login.");
+			
+		elseif (ev == "verifyLoginData") then
+		
+			local nickname = arg1;
+			local password = arg2;
+			
+			if (string.len(nickname) < 1) or (string.len(password) < 1) then
+				triggerClientEvent(client, "evc", resourceRoot, "error_login", "You have to fill all fields.");
+				return;
+			end
+			
+			if (string.len(nickname) > 22) or (string.len(password) > 32) then
+				triggerClientEvent(client, "evc", resourceRoot, "error_login", "There are too long values in fields.");
+				return;
+			end
+			
+			local exists = exports.DB:pobierzWyniki("SELECT * FROM players WHERE nick=? AND password=SHA1(CONCAT(LOWER(?),'cbF0NdGo',?)) LIMIT 1",nickname,string.format("%s%s",password,"89dXhg5dOY"),password);
+			
+			if not exists then
+				triggerClientEvent(client, "evc", resourceRoot, "error_login", "You try use wrong nickname or wrong password.");
+				return;
+			end
+			
+			exports.DB:zapytanie("UPDATE players SET last_session=NOW() WHERE dbid=? LIMIT 1", exists.dbid);
+			triggerClientEvent(client, "evc", resourceRoot, "accept_login", "Login was successful.");
 			
 		end
 	end

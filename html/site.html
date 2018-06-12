@@ -34,12 +34,12 @@
                     <label class="active" for="password">Password</label>
                 </div>
                 <div class="my-label">
-                    <label>
-                        there will be message
+                    <label id="login-label">
+                        Fill in the form.
                     </label>
                 </div>
                 <div class="center-align">
-                    <button onClick="hide()" class="btn waves-effect waves-light light-blue my-button"><i class="material-icons right">input</i>Sign in</button>
+                    <button onClick="loginValidate()" class="btn waves-effect waves-light light-blue my-button hoverable"><i class="material-icons right">input</i>Sign in</button>
                 </div>
             </form>
             <form id="register-div">
@@ -71,7 +71,7 @@
                     </label>
                 </div>
                 <div class="center-align">
-                    <button onClick="registrationValidate()" class="btn waves-effect waves-light light-blue my-button-register"><i class="material-icons right">done</i>Sign up</button>
+                    <button onClick="registrationValidate()" class="btn waves-effect waves-light light-blue my-button-register hoverable"><i class="material-icons right">done</i>Sign up</button>
                 </div>
             </form>
 		</div>
@@ -82,9 +82,26 @@
       <script src="http://mta/webui/styles/mat.js"></script>
       
       <script>
-			function hide() {
-				mta.triggerEvent("eloelo", "two2")
-				document.getElementById("div").style.display = 'none'
+			function loginValidate() {
+				event.preventDefault();
+                
+                var nickname = document.getElementById("nickname").value;
+                var password = document.getElementById("password").value;
+                
+                if (nickname.length < 1 || password.length < 1) {
+                    document.getElementById("login-label").innerHTML = "You have to fill all fields.";
+                    document.getElementById("login-label").style.color = "red";
+                    return;
+                }
+                
+                if (nickname.length > 22 || password.length > 32) {
+                    document.getElementById("login-label").innerHTML = "There are too long values in fields.";
+                    document.getElementById("login-label").style.color = "red";
+                    return;
+                }
+                
+                mta.triggerEvent("cefEventsLoginPanel", "verifyLoginData", nickname, password);
+                
 			}
             
             function setShortBackground() {
@@ -113,13 +130,13 @@
                     }
                 }
                 
-                if (nickname.length < 1 || password < 1 || confirmPassword < 1) {
+                if (nickname.length < 1 || password.length < 1 || confirmPassword.length < 1) {
                     document.getElementById("registration-label").innerHTML = "You have to fill all fields.";
                     document.getElementById("registration-label").style.color = "red";
                     return;
                 }
                 
-                if (nickname.length > 22 || password > 32 || confirmPassword > 32) {
+                if (nickname.length > 22 || password.length > 32 || confirmPassword.length > 32) {
                     document.getElementById("registration-label").innerHTML = "There are too long values in fields.";
                     document.getElementById("registration-label").style.color = "red";
                     return;
