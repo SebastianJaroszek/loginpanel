@@ -67,7 +67,6 @@ addEventHandler("evc",resourceRoot,
 			executeBrowserJavascript(window, "document.getElementById('login-label').innerHTML = '"..message.."'");
 			executeBrowserJavascript(window, "document.getElementById('login-label').style.color = 'green'");
 			executeBrowserJavascript(window, "Materialize.toast('"..message.."', 2500)");
-			triggerServerEvent("ev",resourceRoot,"spawnPlr");
 		elseif (ev == "closeWindow") then
 			executeBrowserJavascript(window, "hideProgressBar()");
 			exports.webui:destroyWebWindow(windowIdentifier);

@@ -1,7 +1,8 @@
 local spawnPlr = (
-	function(plr)
+	function(plr, data)
 		sleep(3000);
-		spawnPlayer(plr, -107.81364, 1206.71301, 19.74219, 135);
+		spawnPlayer(plr, -107.81364, 1206.71301, 19.74219, 135, data.skin);
+		Player:new(data.dbid, plr, data.cash, data.skin);
 		triggerClientEvent(plr,"evc",resourceRoot,"closeWindow");
 	end
 )
@@ -54,8 +55,10 @@ addEventHandler("ev",resourceRoot,
 				return;
 			end
 			
-			local _, success = exports.DB:zapytanie("INSERT INTO players SET nick=?,password=SHA1(CONCAT(LOWER(?),'cbF0NdGo',?)), last_session=NOW()",nickname,string.format("%s%s",password,"89dXhg5dOY"),password);
+			local _, success, lastID = exports.DB:zapytanie("INSERT INTO players SET nick=?,password=SHA1(CONCAT(LOWER(?),'cbF0NdGo',?)), last_session=NOW()",nickname,string.format("%s%s",password,"89dXhg5dOY"),password);
 			
+			--outputChatBox("LAST ID: "..lastID)
+
 			if not success then
 				triggerClientEvent(client, "evc", resourceRoot, "error", "This nickname is already exist in database.");
 				return;
@@ -87,10 +90,7 @@ addEventHandler("ev",resourceRoot,
 			
 			exports.DB:zapytanie("UPDATE players SET last_session=NOW() WHERE dbid=? LIMIT 1", exists.dbid);
 			triggerClientEvent(client, "evc", resourceRoot, "accept_login", "Login was successful.");
-			
-		elseif (ev == "spawnPlr") then
-		
-			callFunctionWithSleeps(spawnPlr, client);
+			callFunctionWithSleeps(spawnPlr, client, exists);
 			
 		end
 	end
