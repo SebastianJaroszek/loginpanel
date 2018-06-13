@@ -3,6 +3,5 @@
 	<file src="html/site.html"/>
 	<script src="ThreadUtils.lua" type="server"/>
 	<script src="LoginServer.lua" type="server"/>
-	<script src="Player.lua" type="server"/>
 	<script src="LoginClient.lua" type="client" cache="false"/>
 </meta>

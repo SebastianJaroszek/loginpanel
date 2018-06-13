@@ -2,7 +2,7 @@ local spawnPlr = (
 	function(plr, data)
 		sleep(3000);
 		spawnPlayer(plr, -107.81364, 1206.71301, 19.74219, 135, data.skin);
-		Player:new(data.dbid, plr, data.cash, data.skin);
+		exports["core-player"]:new(data.dbid, plr, data.cash, data.skin);
 		triggerClientEvent(plr,"evc",resourceRoot,"closeWindow");
 	end
 )
