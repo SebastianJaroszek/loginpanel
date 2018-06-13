@@ -33,3 +33,9 @@ function Player:giveMoney(amount)
 	local response = exports.DB:pobierzWyniki("SELECT cash FROM players WHERE dbid=? LIMIT 1", self.id);
 	self.cash = response.cash;
 end
+
+function Player:takeMoney(amount)
+	exports.DB:zapytanie("UPDATE players SET cash=cash-? WHERE dbid=? LIMIT 1", amount, self.id);
+	local response = exports.DB:pobierzWyniki("SELECT cash FROM players WHERE dbid=? LIMIT 1", self.id);
+	self.cash = response.cash;
+end
