@@ -4,6 +4,7 @@ local spawnPlr = (
 		spawnPlayer(plr, -107.81364, 1206.71301, 19.74219, 135, data.skin);
 		exports["core-player"]:new(data.dbid, plr, data.cash, data.skin);
 		triggerClientEvent(plr,"evc",resourceRoot,"closeWindow");
+		setCameraTarget(plr,plr);
 	end
 )
 

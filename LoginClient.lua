@@ -5,6 +5,12 @@ local lock = false;
 
 fadeCamera(true);
 
+setCameraMatrix(-242.68634, 1067.505, 40.96831, -181.31467, 1121.25525, 32.90133);
+
+setPlayerHudComponentVisible("radar", false);
+setPlayerHudComponentVisible("area_name", false);
+showChat(false);
+
 addEventHandler("onClientResourceStart", resourceRoot,
 	function()
 	
@@ -72,6 +78,9 @@ addEventHandler("evc",resourceRoot,
 			exports.webui:destroyWebWindow(windowIdentifier);
 			guiSetInputMode("allow_binds");
 			showCursor(false);
+			setPlayerHudComponentVisible("radar", true);
+			setPlayerHudComponentVisible("area_name", true);
+			showChat(true);
 			lock = false;
 		end
 	end
