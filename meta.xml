@@ -1,4 +1,5 @@
 <meta>
+	<info author="Sebastian Jaroszek"/>
 	<file src="html/styles/style.css"/>
 	<file src="html/site.html"/>
 	<script src="ThreadUtils.lua" type="server"/>
